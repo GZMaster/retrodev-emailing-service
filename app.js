@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const cors = require("cors"); // External middleware for handling Cross-Origin Resource Sharing (CORS)
 const AppError = require("./utils/appError"); // Custom error handling utility
 const globalErrorHandler = require("./controllers/errorController"); // Global error handling middleware
+const userRouter = require("./routes/userRoutes");
 
 // Create a new instance of the Express application
 const app = express();
@@ -71,7 +72,7 @@ app.use(
 
 // Routes
 // Add CORS handling middleware to allow cross-origin requests to the API
-
+app.use("/api/v1/users", userRouter);
 app.use("images", express.static(`${__dirname}/public/images`));
 
 // Handle all undefined routes by throwing a custom error with a 404 status code
